@@ -34,6 +34,7 @@
 </style>
   </head>
   <body>
+<div id="div-gpt-ad-1466764864166-0" style="height:90px; width:728px;">
 <p>Hello</p>
 <!-- Danmu -->
 <div style="width:800px;height:600px;margin:0 auto;border:1px solid #000;" id="J_stage"></div>
@@ -114,7 +115,7 @@ var Actor = function(play){
 Actor.prototype.makeUp = function() {
     var appearance = $('<div style="min-width:400px;font-size:'+this.play.size +';color:'+this.play.color+';">'+this.play.text+'</div>');
     if (this.play.text === 'ads') {
-      appearance = $('<div id="div-gpt-ad-1466764864166-0" style="height:90px; width:728px;">');
+      appearance = $('ads');
     }
     return appearance;
 }
