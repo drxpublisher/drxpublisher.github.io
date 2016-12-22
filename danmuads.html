@@ -1,31 +1,8 @@
 <html>
   <head>
     <title>Test ads</title>
-<script type='text/javascript'>
-  var googletag = googletag || {};
-  googletag.cmd = googletag.cmd || [];
-  (function() {
-    var gads = document.createElement('script');
-    gads.async = true;
-    gads.type = 'text/javascript';
-    var useSSL = 'https:' == document.location.protocol;
-    gads.src = (useSSL ? 'https:' : 'http:') +
-      '//www.googletagservices.com/tag/js/gpt.js';
-    var node = document.getElementsByTagName('script')[0];
-    node.parentNode.insertBefore(gads, node);
-  })();
-</script>
-
-
-<script type='text/javascript'>
-  googletag.cmd.push(function() {
-    googletag.defineSlot('/17828477/drxpublisher_unit1', [728, 90], 'div-gpt-ad-1466764864166-0').addService(googletag.pubads());
-    googletag.pubads().enableSingleRequest();
-    googletag.enableServices();
-  });
-</script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://coop182.github.io/jquery.dfp.js/jquery.dfp.js"></script>
 <style type="text/css">
   #div-gpt-ad-1466764864166-0 iframe {
     width: 100%;
@@ -34,11 +11,13 @@
 </style>
   </head>
   <body>
-<div id="div-gpt-ad-1466764864166-0" style="height:90px; width:728px;">
 <p>Hello</p>
 <!-- Danmu -->
 <div style="width:800px;height:600px;margin:0 auto;border:1px solid #000;" id="J_stage"></div>
 <script type="text/javascript">
+window.googletag = window.googletag || {};
+window.googletag.cmd = window.googletag.cmd || [];
+
 var playList = [{
     //从何时开始
     time:0,
@@ -115,7 +94,7 @@ var Actor = function(play){
 Actor.prototype.makeUp = function() {
     var appearance = $('<div style="min-width:400px;font-size:'+this.play.size +';color:'+this.play.color+';">'+this.play.text+'</div>');
     if (this.play.text === 'ads') {
-      appearance = $('ads');
+      appearance = $('<div id="output"></div>');
     }
     return appearance;
 }
@@ -154,6 +133,24 @@ Actor.prototype.perform = function() {
         that.animate();
     },delayTime)
 
+    if (this.play.text === 'ads') {
+      // We can put the ads Info into message
+      var networkID = '17828477';
+      $('#networkID').val(networkID);
+
+      var adunitID = 'drxpublisher_unit1';
+      $('#adunitID').val(adunitID);
+
+      var dimensions = '728x90';
+      $('#dimensions').val(dimensions);
+
+      if (networkID != '' && adunitID != '' && dimensions != ''
+          && ($('#output').is(':empty'))) {
+        $('#output').append('<div class="adunit" data-adunit="'+adunitID+'" data-dimensions="'+dimensions+'">Ad could not be loaded.</div>');
+
+        $.dfp(networkID);
+      }
+    }
 }
 
 var director = $({});

@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TEST</title>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://coop182.github.io/jquery.dfp.js/jquery.dfp.js"></script>
+</head>
+<body>
+
+<div id="output"></div>
+
+<script>
+
+window.googletag = window.googletag || {};
+window.googletag.cmd = window.googletag.cmd || [];
+
+var networkID = '17828477';
+$('#networkID').val(networkID);
+
+var adunitID = 'drxpublisher_unit1';
+$('#adunitID').val(adunitID);
+
+var dimensions = '728x90';
+$('#dimensions').val(dimensions);
+
+if (networkID != '' && adunitID != '' && dimensions != '') {
+
+    $('#output').append('<div class="adunit" data-adunit="'+adunitID+'" data-dimensions="'+dimensions+'">Ad could not be loaded.</div>');
+
+    $.dfp(networkID);
+}
+
+</script>
+
+</body>
+</html>
